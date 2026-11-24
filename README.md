@@ -1,59 +1,74 @@
-
 # Excel Data Cleaner
 
-A simple Python tool for cleaning Excel and CSV datasets using Pandas.
+A Python tool for cleaning and processing Excel files using Pandas.
 
-## 📌 Features
+## Features
 
-- Remove duplicate rows.
-- Remove rows with missing values.
-- Process data using Pandas.
-- Export cleaned data to an Excel file.
-- Simple and easy-to-use code.
+- Read Excel files using Pandas
+- Detect and remove duplicate rows
+- Detect missing values
+- Fill missing Age values with the average
+- Fill missing City and Salary values with `"Unknown"`
+- Generate a cleaning report
+- Save cleaned data to a new Excel file
 
-## 🛠️ Technologies
+## Technologies
 
-- Python 3
+- Python
 - Pandas
 - OpenPyXL
 
+## Project Structure
 
-## ⚙️ Installation
+```text
+excel-data-cleaner/
+│
+├── Data/
+│   ├── Input/
+│   │   └── sample_input.xlsx
+│   └── Output/
+│       └── cleaned_data.xlsx
+│
+├── main.py
+├── requirements.txt
+└── README.md
+```
 
-1. Clone the repository:
+## Installation
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/teter38e/excel-data-cleaner.git
 ```
 
-2. Open the project folder:
-
-```bash
-cd excel-data-cleaner
-```
-
-3. Install the required libraries:
+Install dependencies:
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-## ▶️ Usage
+## Usage
 
-1. Place your Excel file in the input folder.
-2. Run the Python script:
+1. Place your Excel file in `Data/Input/`.
+2. Run the program:
 
 ```bash
 python main.py
 ```
 
-3. Find the cleaned Excel file in the output folder.
+3. Find the cleaned Excel file in `Data/Output/`.
 
-## 🎯 Purpose
+## Cleaning Report
 
-This project was created to practice Python programming, data processing, and Excel automation.
+The program displays:
 
----
+- Original number of rows
+- Number of duplicate rows
+- Number of missing values
+- Number of removed rows
+- Final number of rows
 
-**Author:** [teter38e](https://github.com/teter38e)
-ya
+## Author
+
+GitHub: https://github.com/teter38e
