@@ -4,14 +4,49 @@ from pathlib import Path
 
 # File paths
 BASE_DIR = Path(__file__).resolve().parent
-FILE_PATH = BASE_DIR / "Data" / "Input" / "sample_input.xlsx"
+
+INPUT_DIR = BASE_DIR / "Data" / "Input"
 OUTPUT_DIR = BASE_DIR / "Data" / "Output"
+
 OUTPUT_DIR.mkdir(exist_ok=True)
+
+excel_files = list(INPUT_DIR.glob("*.xlsx"))
+if not excel_files:
+    print("No Excel files found in Input folder!")
+    exit()
+
+print("Available Excel files:")
+
+for i in range(len(excel_files)):
+    print(f"{i + 1}. {excel_files[i].name}")
+
+try:
+    choice = int(input("Choose a file number: "))
+except ValueError:
+    print("Please enter a valid number!")
+    exit()
+if 1 <= choice <= len(excel_files):
+    FILE_PATH = excel_files[choice - 1]
+    print("Selected file:", FILE_PATH.name)
+else:
+    print("Invalid choice!")
+    exit()
 
 # Read Excel file
 df = pd.read_excel(FILE_PATH)
+required_columns = ["Name", "Age", "City", "Salary"]
 
-print("Original rows:", len(df))
+missing_columns = []
+
+for column in required_columns:
+    if column not in df.columns:
+        missing_columns.append(column)
+
+if missing_columns:
+    print("Missing required columns:", ", ".join(missing_columns))
+    exit()
+
+print("\n\n\nOriginal rows:", len(df))
 original_rows = len(df)
 
 # Remove duplicate rows
@@ -53,7 +88,7 @@ print(df)
 
 
 # Save cleaned file
-output_file = OUTPUT_DIR / "cleaned_data.xlsx"
+output_file = OUTPUT_DIR / f"{FILE_PATH.stem}_cleaned.xlsx"
 df.to_excel(output_file, index=False)
 
 print("\nCleaning completed!")
